@@ -286,3 +286,22 @@ main { animation: enter .9s ease both; }
   .exhibit .object { max-width: 300px; }
   .facts li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* ---------- 11. Title line under the name ---------- */
+.site-role {
+  margin-top: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.site-role span { display: block; }
+.site-role .r1 { font-size: 15px; letter-spacing: .28em; text-transform: uppercase; }
+.site-role .r2 { font-size: 15px; margin-top: 2px; }
+.site-name { display: inline-block; }
+/* inner pages: one quiet line only */
+.site-header.compact .site-role { margin-top: 6px; }
+.site-header.compact .site-role .r1 { display: none; }
+.site-header.compact .site-role .r2 { font-size: 13px; }
+@media (max-width: 720px) {
+  .site-role .r1 { font-size: 13px; letter-spacing: .2em; }
+  .site-role .r2 { font-size: 13px; }
+}
