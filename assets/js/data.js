@@ -1,0 +1,174 @@
+/* =========================================================
+   ALL SITE CONTENT LIVES HERE.
+   To add or change a work, edit this file only.
+
+   Each work:
+     id       short name used in the link (letters, numbers, dashes)
+     room     which category it belongs to (must match a room id below)
+     title    shown on the wall label
+     year     e.g. "2025"  (leave "" if you don't want a year)
+     role     what YOU did
+     tools    list of tools
+     image    path to a cover image, e.g. "assets/images/stray.jpg"
+              (leave "" to show the generated "sound object")
+     video    a YouTube or Vimeo link (leave "" until you have one)
+     summary  one or two sentences for the project page
+     notes    optional extra paragraphs (list of strings)
+     featured true = also shown on the Main page
+   ========================================================= */
+
+const ROOMS = [
+  {
+    id: "game-scoring",
+    title: "Game Scoring",
+    blurb: "Original music written for games and rescored game scenes.",
+    hue: 210
+  },
+  {
+    id: "audio-implementation",
+    title: "Audio Implementation",
+    blurb: "Interactive music and sound systems built in Wwise, Unreal and Unity.",
+    hue: 160
+  },
+  {
+    id: "arrangement-production",
+    title: "Arrangement & Production",
+    blurb: "Vocal arrangement and music production for released work.",
+    hue: 25
+  },
+  {
+    id: "interactive-installation",
+    title: "Interactive & Installation",
+    blurb: "Sound in physical space: installations and live audio-visual work.",
+    hue: 280
+  }
+];
+
+const WORKS = [
+  /* ---------------- Game Scoring ---------------- */
+  {
+    id: "stray-rescore",
+    room: "game-scoring",
+    title: "Stray Rescore",
+    year: "",
+    role: "Composer",
+    tools: ["Logic Pro"],
+    image: "",
+    video: "",
+    summary: "A rescore of a scene from Stray.",
+    notes: [],
+    featured: true
+  },
+  {
+    id: "zelda-rescore",
+    room: "game-scoring",
+    title: "Zelda Cave Rescore",
+    year: "",
+    role: "Composer",
+    tools: ["Logic Pro"],
+    image: "",
+    video: "",
+    summary: "A rescore of the cave scene where the ghost princess appears. My first game-scoring piece.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "usc-collaborations",
+    room: "game-scoring",
+    title: "USC Game Collaborations",
+    year: "",
+    role: "Composer / Sound Designer / Audio Director",
+    tools: [],
+    image: "",
+    video: "",
+    summary: "Three team projects with USC game developers: composer on one, sound designer on another, and audio director, composer and audio implementer on the most recent.",
+    notes: [],
+    featured: false
+  },
+
+  /* ---------------- Audio Implementation ---------------- */
+  {
+    id: "dungeon-escape",
+    room: "audio-implementation",
+    title: "Dungeon Escape",
+    year: "",
+    role: "Music, SFX & Implementation",
+    tools: ["Wwise", "Unreal Engine", "Blueprints"],
+    image: "",
+    video: "",
+    summary: "A dungeon crawler with a four-state adaptive music system and stingers for statue interactions. Music, sound effects and Blueprint implementation are all mine.",
+    notes: [],
+    featured: true
+  },
+  {
+    id: "cave-soundscape",
+    room: "audio-implementation",
+    title: "Cave Soundscape",
+    year: "",
+    role: "Sound Design & Implementation",
+    tools: ["Wwise", "Unreal Engine"],
+    image: "",
+    video: "",
+    summary: "An interactive cave soundscape: attenuation curves, player speed driving Foley through an RTPC, and state-based transitions between cave areas.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "dystopia",
+    room: "audio-implementation",
+    title: "Dystopia",
+    year: "",
+    role: "Audio",
+    tools: ["Unity", "C#", "Git LFS"],
+    image: "",
+    video: "",
+    summary: "A collaborative Unity game. I built the audio, including a scene-transition crossfade system using a custom event bus.",
+    notes: [],
+    featured: false
+  },
+
+  /* ---------------- Arrangement & Production ---------------- */
+  {
+    id: "eggy-party",
+    room: "arrangement-production",
+    title: "Eggy Party Carnival Song",
+    year: "",
+    role: "Vocal Arranger",
+    tools: [],
+    image: "",
+    video: "",
+    summary: "Vocal arrangement for a carnival celebration song in NetEase's Eggy Party (蛋仔派对). The song is still used in the game.",
+    notes: [],
+    featured: true
+  },
+
+  /* ---------------- Interactive & Installation ---------------- */
+  {
+    id: "a-place-to-hold",
+    room: "interactive-installation",
+    title: "A Place to Hold",
+    year: "2026",
+    role: "Solo artist",
+    tools: ["Unreal Engine", "TouchDesigner", "Wwise", "Arduino", "OSC"],
+    image: "",
+    video: "",
+    summary: "A private, curtained space to hold, not express, what you feel. You speak, sigh or hum; the system listens only to the texture and energy of your voice, never its meaning, and leaves no trace.",
+    notes: [
+      "Your voice summons a mist out of silence. A wave of the hand over a real, empty diary releases it into an abstract book on screen, where it dissolves."
+    ],
+    featured: true
+  },
+  {
+    id: "mit-chapel",
+    room: "interactive-installation",
+    title: "How Do You Find Silence?",
+    year: "2026",
+    role: "Sound & Interaction (team of four)",
+    tools: ["Wwise", "Makey Makey"],
+    image: "",
+    video: "",
+    summary: "The entrance piece of a collaborative live audio-visual work at the MIT Chapel, presented with MIT ORSEL and Berklee. Up to three visitors touch a shared light object and breathe together while the sound gathers, holds and spreads.",
+    notes: [],
+    featured: false
+  }
+];

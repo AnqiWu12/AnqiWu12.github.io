@@ -1,0 +1,288 @@
+/* =========================================================
+   Anqi Wu — portfolio
+   A quiet "exhibition hall": warm paper background, typewriter
+   type, lots of empty space, small wall labels under each work.
+   ========================================================= */
+
+/* ---------- 1. Design tokens (change colors / fonts here) ---------- */
+:root {
+  --paper:      #ECEAE5;   /* gallery wall */
+  --paper-top:  #F2F1EE;   /* lighter at the top, like gallery lighting */
+  --ink:        #1F1E1C;   /* main text */
+  --ink-soft:   #6B6862;   /* labels, secondary text */
+  --line:       #8A867F;   /* thin divider lines */
+  --object:     #CFCCC5;   /* placeholder "sound object" fill */
+  --object-edge:#B9B5AD;
+
+  --font: "Courier Prime", "Courier New", ui-monospace, monospace;
+
+  --max: 1080px;           /* widest content column */
+  --gutter: 24px;
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(to bottom, var(--paper-top), var(--paper) 600px) var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+img, video, iframe { max-width: 100%; display: block; }
+
+/* the page fades in gently, like walking into a room */
+main { animation: enter .9s ease both; }
+@keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { main { animation: none; } }
+
+/* ---------- 3. Header: name + stacked navigation ---------- */
+.site-header {
+  text-align: center;
+  padding: 56px var(--gutter) 0;
+}
+.site-name {
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.site-nav {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  letter-spacing: .03em;
+}
+.site-nav a {
+  position: relative;
+  padding: 2px 4px;
+  transition: opacity .3s;
+}
+.site-nav a:hover { opacity: .55; }
+.site-nav a[aria-current="page"]::after {   /* tiny mark under the current page */
+  content: "";
+  position: absolute; left: 50%; bottom: -2px;
+  width: 18px; height: 1px; background: var(--ink);
+  transform: translateX(-50%);
+}
+
+/* compact header for inner pages */
+.site-header.compact { padding-top: 36px; }
+.site-header.compact .site-nav {
+  margin-top: 22px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 30px;
+  font-size: 17px;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  max-width: var(--max);
+  margin: 72px auto 0;
+  width: calc(100% - 2 * var(--gutter));
+}
+.site-header.compact + .rule { margin-top: 36px; }
+
+/* ---------- 4. Shared layout ---------- */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.page-title {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 72px 0 12px;
+}
+.page-lede {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* ---------- 5. The exhibition floor (grid of works) ---------- */
+.floor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 96px 72px;
+  padding: 96px 0 140px;
+}
+/* stagger the right column so it feels hung, not tiled */
+.floor > .exhibit:nth-child(even) { margin-top: 120px; }
+
+.exhibit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.exhibit .object {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.exhibit img.object { object-fit: cover; aspect-ratio: 4 / 3; }
+.exhibit:hover .object { transform: translateY(-6px) scale(1.015); }
+
+/* the wall label under each work */
+.label {
+  margin-top: 22px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.label .t { display: block; }
+.label .y { display: block; color: var(--ink-soft); }
+
+/* ---------- 6. Rooms (category list on Works page) ---------- */
+.rooms {
+  list-style: none;
+  padding: 96px 0 140px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 110px 72px;
+}
+.rooms li:nth-child(even) { margin-top: 120px; }
+.room .count { color: var(--ink-soft); font-size: 14px; }
+
+/* ---------- 7. Single work page ---------- */
+.work {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px var(--gutter) 140px;
+}
+.work .back {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.work .back:hover { color: var(--ink); }
+.work h1 {
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  margin-top: 40px;
+  line-height: 1.25;
+}
+.work .meta {
+  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.work .meta span + span::before { content: "  /  "; white-space: pre; }
+.work .hero { margin: 56px auto; max-width: 460px; }
+.work .media {
+  margin: 56px 0;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border: 0;
+  background: #000;
+}
+.work .media-pending {
+  margin: 56px 0;
+  padding: 40px 24px;
+  border: 1px dashed var(--line);
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.work h2 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 56px 0 14px;
+}
+.work p + p { margin-top: 1em; }
+.tools { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.tools li {
+  border: 1px solid var(--line);
+  padding: 2px 12px;
+  font-size: 14px;
+}
+.next-prev {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.next-prev a:hover { opacity: .55; }
+
+/* ---------- 8. About / Contact ---------- */
+.text-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 72px var(--gutter) 140px;
+}
+.text-page p + p { margin-top: 1.2em; }
+.portrait {
+  width: 220px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  margin: 0 auto 56px;
+  filter: grayscale(.15);
+}
+.facts { list-style: none; margin-top: 48px; border-top: 1px solid var(--line); }
+.facts li {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.facts .k { color: var(--ink-soft); }
+.contact-list { list-style: none; text-align: center; font-size: 19px; }
+.contact-list li + li { margin-top: 18px; }
+.contact-list .k {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.contact-list a { border-bottom: 1px solid var(--line); }
+.contact-list a:hover { border-color: var(--ink); }
+
+/* ---------- 9. Footer ---------- */
+.site-footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 0 var(--gutter) 48px;
+}
+
+/* ---------- 10. Phones ---------- */
+@media (max-width: 720px) {
+  :root { --gutter: 16px; }
+  body { font-size: 16px; }
+  .site-header { padding-top: 40px; }
+  .site-nav { margin-top: 40px; font-size: 19px; }
+  .rule { margin-top: 48px; }
+  .floor, .rooms { grid-template-columns: 1fr; gap: 72px; padding: 64px 0 96px; }
+  .floor > .exhibit:nth-child(even), .rooms li:nth-child(even) { margin-top: 0; }
+  .exhibit .object { max-width: 300px; }
+  .facts li { grid-template-columns: 1fr; gap: 2px; }
+}
