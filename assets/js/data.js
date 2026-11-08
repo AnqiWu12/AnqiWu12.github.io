@@ -7,7 +7,9 @@
      room     which category it belongs to (must match a room id below)
      title    shown on the wall label
      year     e.g. "2025"  (leave "" if you don't want a year)
-     role     what YOU did
+     roles    which filter buttons this work appears under (Works page);
+              use names from the ROLES list below
+     role     what YOU did, in words (shown on the label)
      tools    list of tools
      image    path to a cover image, e.g. "assets/images/stray.jpg"
               (leave "" to show the generated "sound object")
@@ -16,6 +18,9 @@
      notes    optional extra paragraphs (list of strings)
      featured true = also shown on the Main page
    ========================================================= */
+
+/* the filter buttons on the Works page, in this order */
+const ROLES = ["Composer", "Arranger", "Sound Designer", "Audio Implementer", "Interactive Artist"];
 
 const ROOMS = [
   {
@@ -48,6 +53,7 @@ const WORKS = [
   /* ---------------- Game Scoring ---------------- */
   {
     id: "stray-rescore",
+    roles: ["Composer"],
     room: "game-scoring",
     title: "Stray Rescore",
     year: "",
@@ -61,6 +67,7 @@ const WORKS = [
   },
   {
     id: "zelda-rescore",
+    roles: ["Composer"],
     room: "game-scoring",
     title: "Zelda Cave Rescore",
     year: "",
@@ -74,6 +81,7 @@ const WORKS = [
   },
   {
     id: "usc-collaborations",
+    roles: ["Composer", "Sound Designer", "Audio Implementer"],
     room: "game-scoring",
     title: "USC Game Collaborations",
     year: "",
@@ -89,6 +97,7 @@ const WORKS = [
   /* ---------------- Audio Implementation ---------------- */
   {
     id: "dungeon-escape",
+    roles: ["Composer", "Sound Designer", "Audio Implementer"],
     room: "audio-implementation",
     title: "Dungeon Escape",
     year: "",
@@ -102,6 +111,7 @@ const WORKS = [
   },
   {
     id: "cave-soundscape",
+    roles: ["Sound Designer", "Audio Implementer"],
     room: "audio-implementation",
     title: "Cave Soundscape",
     year: "",
@@ -115,6 +125,7 @@ const WORKS = [
   },
   {
     id: "dystopia",
+    roles: ["Audio Implementer"],
     room: "audio-implementation",
     title: "Dystopia",
     year: "",
@@ -130,6 +141,7 @@ const WORKS = [
   /* ---------------- Arrangement & Production ---------------- */
   {
     id: "eggy-party",
+    roles: ["Arranger"],
     room: "arrangement-production",
     title: "Eggy Party Carnival Song",
     year: "",
@@ -145,6 +157,7 @@ const WORKS = [
   /* ---------------- Interactive & Installation ---------------- */
   {
     id: "a-place-to-hold",
+    roles: ["Interactive Artist", "Audio Implementer"],
     room: "interactive-installation",
     title: "A Place to Hold",
     year: "2026",
@@ -160,6 +173,7 @@ const WORKS = [
   },
   {
     id: "mit-chapel",
+    roles: ["Interactive Artist", "Sound Designer"],
     room: "interactive-installation",
     title: "How Do You Find Silence?",
     year: "2026",

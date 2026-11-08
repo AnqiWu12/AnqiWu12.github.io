@@ -305,3 +305,31 @@ main { animation: enter .9s ease both; }
   .site-role .r1 { font-size: 13px; letter-spacing: .2em; }
   .site-role .r2 { font-size: 13px; }
 }
+
+/* ---------- 12. Role filters on the Works page ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+  margin-top: 40px;
+}
+.filters button {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: color .3s, border-color .3s;
+}
+.filters button:hover { color: var(--ink); }
+.filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--line); }
+.filters button:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
+
+[hidden] { display: none !important; }
+
+/* works that don't match the filter stay on the wall, but in the dark */
+.exhibit { transition: opacity .6s ease, filter .6s ease; }
+.exhibit.dim { opacity: .12; filter: grayscale(1); pointer-events: none; }

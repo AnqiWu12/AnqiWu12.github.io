@@ -8,16 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
-  <script src="assets/js/data.js?v=3" defer></script>
-  <script src="assets/js/site.js?v=3" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <script src="assets/js/data.js?v=4" defer></script>
+  <script src="assets/js/site.js?v=4" defer></script>
 </head>
 <body data-page="works">
   <header class="site-header compact">
-    <a class="site-name" href="index.html">Anqi Wu</a>
+    <a class="site-name" href="./">Anqi Wu</a>
     <p class="site-role"><span class="r1">Interdisciplinary Artist</span><span class="r2">Game Audio · Composition · Interactive Art</span></p>
     <nav class="site-nav" aria-label="Main">
-    <a href="index.html">Main</a>
+    <a href="./">Main</a>
     <a href="works.html" aria-current="page">Works</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
@@ -26,8 +26,10 @@
   <hr class="rule">
   <main class="wrap">
     <h1 class="page-title">Works</h1>
-    <p class="page-lede">Four rooms. Step into one.</p>
+    <p class="page-lede" id="works-lede">Four rooms. Step into one.</p>
+    <nav class="filters" id="filters" aria-label="Filter works by role"></nav>
     <ul class="rooms" id="rooms"></ul>
+    <div class="floor" id="floor" hidden></div>
   </main>
   <footer class="site-footer">© <span id="year">2026</span> Anqi Wu</footer>
 </body>

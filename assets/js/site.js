@@ -110,6 +110,46 @@ const pages = {
   },
 
   works() {
+    // 1. the filter buttons
+    const bar = $("#filters");
+    const choices = ["All", ...ROLES];
+    bar.innerHTML = choices.map((c) =>
+      `<button type="button" data-role="${esc(c)}">${esc(c)}</button>`).join("");
+
+    // 2. every work on one floor (used when a filter is on)
+    const floor = $("#floor");
+    floor.innerHTML = WORKS.map(exhibit).join("");
+    [...floor.children].forEach((el, i) => { el.dataset.roles = (WORKS[i].roles || []).join("|"); });
+
+    // 3. show rooms for "All", or light up only the works with that role
+    function show(role) {
+      const all = !ROLES.includes(role);
+      bar.querySelectorAll("button").forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.role === (all ? "All" : role))));
+      $("#rooms").hidden = !all;
+      floor.hidden = all;
+      $("#works-lede").textContent = all ? "Four rooms. Step into one." : `Works as ${role}.`;
+      if (!all) {
+        // lit works move to the front of the wall, dimmed ones after
+        const items = [...floor.children];
+        const lit = (el) => el.dataset.roles.split("|").includes(role);
+        [...items.filter(lit), ...items.filter((el) => !lit(el))].forEach((el) => floor.appendChild(el));
+        items.forEach((el) => {
+          const on = el.dataset.roles.split("|").includes(role);
+          el.classList.toggle("dim", !on);
+          el.tabIndex = on ? 0 : -1;
+          el.setAttribute("aria-hidden", String(!on));
+        });
+      }
+      const url = all ? "works.html" : `works.html?role=${encodeURIComponent(role)}`;
+      history.replaceState(null, "", url);
+    }
+    bar.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (b) show(b.dataset.role);
+    });
+
+    // 4. the rooms
     $("#rooms").innerHTML = ROOMS.map((r) => {
       const n = worksIn(r.id).length;
       return `
@@ -121,6 +161,9 @@ const pages = {
         </a>
       </li>`;
     }).join("");
+
+    // open with the filter from the link, e.g. works.html?role=Composer
+    show(params.get("role"));
   },
 
   room() {
