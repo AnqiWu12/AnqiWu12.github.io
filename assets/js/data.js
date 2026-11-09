@@ -32,7 +32,7 @@
    ========================================================= */
 
 /* the filter buttons on the Works page, in this order */
-const ROLES = ["Composer", "Songwriter", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Interactive Artist"];
+const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Interactive Artist"];
 
 const ROOMS = [
   {
