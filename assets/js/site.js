@@ -112,6 +112,9 @@ function mediaFor(url, title) {
   if (/\.(mp3|wav|m4a|ogg)(\?.*)?$/i.test(url)) {
     return `<figure class="audio-file"><audio controls preload="none" src="${esc(url)}"></audio></figure>`;
   }
+  if (/\.pdf(\?.*)?$/i.test(url)) {
+    return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">View score (PDF) ↗</a></p>`;
+  }
   return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">Listen / watch ↗</a></p>`;
 }
 

@@ -18,6 +18,7 @@
                 SoundCloud link           -> SoundCloud player
                 "assets/audio/x.mp3"      -> audio player (put the file
                                              in the assets/audio folder)
+                "assets/scores/x.pdf"     -> a "View score (PDF)" link
                 any other link            -> a "Listen / watch" link
      link2    optional second link, same rules (e.g. video + audio)
      images   optional list of extra pictures shown under the media,
@@ -28,7 +29,7 @@
    ========================================================= */
 
 /* the filter buttons on the Works page, in this order */
-const ROLES = ["Composer", "Arranger", "Sound Designer", "Audio Implementer", "Interactive Artist"];
+const ROLES = ["Composer", "Arranger", "Orchestrator", "Sound Designer", "Audio Implementer", "Interactive Artist"];
 
 const ROOMS = [
   {
@@ -42,6 +43,12 @@ const ROOMS = [
     title: "Rescores & Redesigns",
     blurb: "New music, sound and implementation for existing games, scenes and ads.",
     hue: 30
+  },
+  {
+    id: "arrangement-orchestration",
+    title: "Arrangement & Orchestration",
+    blurb: "Existing music rewritten for new forces: orchestra, ensemble and voice.",
+    hue: 345
   },
   {
     id: "interactive-installation",
@@ -197,6 +204,39 @@ const WORKS = [
     link2: "",
     images: [],
     summary: "A new score for an existing commercial.",
+    notes: [],
+    featured: false
+  },
+
+  {
+    id: "orchestral-arrangement",
+    roles: ["Arranger", "Orchestrator"],
+    room: "arrangement-orchestration",
+    title: "Orchestral Arrangement",
+    year: "",
+    role: "Arranger & Orchestrator",
+    tools: [],
+    image: "",
+    link: "",
+    link2: "",
+    images: [],
+    summary: "An existing piece rearranged for full orchestra.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "ensemble-arrangement",
+    roles: ["Arranger"],
+    room: "arrangement-orchestration",
+    title: "Ensemble Arrangement",
+    year: "",
+    role: "Arranger",
+    tools: [],
+    image: "",
+    link: "",
+    link2: "",
+    images: [],
+    summary: "A pop song rearranged for ensemble.",
     notes: [],
     featured: false
   },
