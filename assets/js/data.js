@@ -35,7 +35,7 @@
    ========================================================= */
 
 /* the filter buttons on the Works page, in this order */
-const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Audio Programmer", "Interactive Artist"];
+const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Audio Programmer", "Creative Coder", "Interactive Artist"];
 
 const ROOMS = [
   {
@@ -64,8 +64,8 @@ const ROOMS = [
   },
   {
     id: "tools-code",
-    title: "Audio Tools & Code",
-    blurb: "Software I write for listening to and working with sound.",
+    title: "Creative Coding",
+    blurb: "Games and tools I programmed myself, in Unity (C#) and Python.",
     hue: 120
   },
   {
@@ -120,7 +120,7 @@ const WORKS = [
     room: "games",
     title: "Dungeon Escape",
     year: "2026",
-    roles: ["Composer", "Sound Designer", "Audio Implementer"],
+    roles: ["Composer", "Sound Designer", "Audio Implementer", "Creative Coder"],
     role: "",
     status: "",
     tools: ["Unreal Engine", "Wwise", "Blueprints"],
@@ -367,7 +367,7 @@ const WORKS = [
     room: "interactive-installation",
     title: "A Place to Hold",
     year: "2026",
-    roles: ["Composer", "Sound Designer", "Audio Implementer", "Interactive Artist"],
+    roles: ["Composer", "Sound Designer", "Audio Implementer", "Creative Coder", "Interactive Artist"],
     role: "Interdisciplinary Artist",
     status: "",
     tools: ["Unreal Engine", "TouchDesigner", "Wwise", "Arduino", "OSC"],
@@ -386,7 +386,7 @@ const WORKS = [
     room: "interactive-installation",
     title: "How Do You Find Silence?",
     year: "2026",
-    roles: ["Sound Designer", "Interactive Artist"],
+    roles: ["Sound Designer", "Creative Coder", "Interactive Artist"],
     role: "",
     status: "",
     tools: ["Wwise", "Makey Makey"],
@@ -405,7 +405,7 @@ const WORKS = [
     room: "tools-code",
     title: "Audio Analyzer",
     year: "2025",
-    roles: ["Audio Programmer"],
+    roles: ["Audio Programmer", "Creative Coder"],
     role: "",
     status: "",
     tools: ["Python"],
@@ -416,6 +416,44 @@ const WORKS = [
     images: [],
     pending: "",
     summary: "A small audio analysis tool written in Python.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "apple-farm",
+    room: "tools-code",
+    title: "Apple Farm",
+    year: "2026",
+    roles: ["Creative Coder"],
+    role: "",
+    status: "",
+    tools: ["Unity", "C#"],
+    image: "",
+    media: "images",
+    link: "",
+    link2: "",
+    images: [],
+    pending: "",
+    summary: "A first-person arcade game built in Unity, with animal AI, wave spawning, a Golden Apple power-up and a WebGL build.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "apple-snake",
+    room: "tools-code",
+    title: "Apple Snake",
+    year: "2026",
+    roles: ["Creative Coder"],
+    role: "",
+    status: "",
+    tools: ["Unity", "C#"],
+    image: "",
+    media: "images",
+    link: "",
+    link2: "",
+    images: [],
+    pending: "",
+    summary: "A 2D Snake game built in Unity with C#.",
     notes: [],
     featured: false
   }
