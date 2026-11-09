@@ -124,6 +124,9 @@ function mediaBlock(work) {
   return { html: players + gallery, hasVideo: /class="media"/.test(players) };
 }
 
+const NUM = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
+const roomsLede = () => `${NUM[ROOMS.length] || ROOMS.length} rooms. Step into one.`;
+
 /* ---------- page renderers ---------- */
 const pages = {
   main() {
@@ -149,7 +152,7 @@ const pages = {
         b.setAttribute("aria-pressed", String(b.dataset.role === (all ? "All" : role))));
       $("#rooms").hidden = !all;
       floor.hidden = all;
-      $("#works-lede").textContent = all ? "Four rooms. Step into one." : `Works as ${role}.`;
+      $("#works-lede").textContent = all ? roomsLede() : `Works as ${role}.`;
       if (!all) {
         // lit works move to the front of the wall, dimmed ones after
         const items = [...floor.children];

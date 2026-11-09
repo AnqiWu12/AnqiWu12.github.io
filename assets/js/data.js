@@ -32,37 +32,31 @@ const ROLES = ["Composer", "Arranger", "Sound Designer", "Audio Implementer", "I
 
 const ROOMS = [
   {
-    id: "game-scoring",
-    title: "Game Scoring",
-    blurb: "Original music written for games and rescored game scenes.",
+    id: "games",
+    title: "Games",
+    blurb: "Music, sound and audio for real game projects, released and in development.",
     hue: 210
   },
   {
-    id: "audio-implementation",
-    title: "Audio Implementation",
-    blurb: "Interactive music and sound systems built in Wwise, Unreal and Unity.",
-    hue: 160
-  },
-  {
-    id: "arrangement-production",
-    title: "Arrangement & Production",
-    blurb: "Vocal arrangement and music production for released work.",
-    hue: 25
+    id: "rescores-redesigns",
+    title: "Rescores & Redesigns",
+    blurb: "New music, sound and implementation for existing games, scenes and ads.",
+    hue: 30
   },
   {
     id: "interactive-installation",
     title: "Interactive & Installation",
-    blurb: "Sound in physical space: installations and live audio-visual work.",
+    blurb: "Original installations and live audio-visual work: sound in physical space.",
     hue: 280
   }
 ];
 
 const WORKS = [
-  /* ---------------- Game Scoring ---------------- */
+  /* ---------------- works (room set on each) ---------------- */
   {
     id: "stray-rescore",
     roles: ["Composer"],
-    room: "game-scoring",
+    room: "rescores-redesigns",
     title: "Stray Rescore",
     year: "",
     role: "Composer",
@@ -78,7 +72,7 @@ const WORKS = [
   {
     id: "zelda-rescore",
     roles: ["Composer"],
-    room: "game-scoring",
+    room: "rescores-redesigns",
     title: "Zelda Cave Rescore",
     year: "",
     role: "Composer",
@@ -94,7 +88,7 @@ const WORKS = [
   {
     id: "usc-collaborations",
     roles: ["Composer", "Sound Designer", "Audio Implementer"],
-    room: "game-scoring",
+    room: "games",
     title: "USC Game Collaborations",
     year: "",
     role: "Composer / Sound Designer / Audio Director",
@@ -108,11 +102,10 @@ const WORKS = [
     featured: false
   },
 
-  /* ---------------- Audio Implementation ---------------- */
   {
     id: "dungeon-escape",
     roles: ["Composer", "Sound Designer", "Audio Implementer"],
-    room: "audio-implementation",
+    room: "rescores-redesigns",
     title: "Dungeon Escape",
     year: "",
     role: "Music, SFX & Implementation",
@@ -128,7 +121,7 @@ const WORKS = [
   {
     id: "cave-soundscape",
     roles: ["Sound Designer", "Audio Implementer"],
-    room: "audio-implementation",
+    room: "rescores-redesigns",
     title: "Cave Soundscape",
     year: "",
     role: "Sound Design & Implementation",
@@ -144,7 +137,7 @@ const WORKS = [
   {
     id: "dystopia",
     roles: ["Audio Implementer"],
-    room: "audio-implementation",
+    room: "games",
     title: "Dystopia",
     year: "",
     role: "Audio",
@@ -158,11 +151,10 @@ const WORKS = [
     featured: false
   },
 
-  /* ---------------- Arrangement & Production ---------------- */
   {
     id: "eggy-party",
     roles: ["Arranger"],
-    room: "arrangement-production",
+    room: "games",
     title: "Eggy Party Carnival Song",
     year: "",
     role: "Vocal Arranger",
@@ -174,6 +166,39 @@ const WORKS = [
     summary: "Vocal arrangement for a carnival celebration song in NetEase's Eggy Party (蛋仔派对). The song is still used in the game.",
     notes: [],
     featured: true
+  },
+
+  {
+    id: "ad-rescore-1",
+    roles: ["Composer"],
+    room: "rescores-redesigns",
+    title: "Ad Rescore 1",
+    year: "",
+    role: "Composer",
+    tools: [],
+    image: "",
+    link: "",
+    link2: "",
+    images: [],
+    summary: "A new score for an existing commercial.",
+    notes: [],
+    featured: false
+  },
+  {
+    id: "ad-rescore-2",
+    roles: ["Composer"],
+    room: "rescores-redesigns",
+    title: "Ad Rescore 2",
+    year: "",
+    role: "Composer",
+    tools: [],
+    image: "",
+    link: "",
+    link2: "",
+    images: [],
+    summary: "A new score for an existing commercial.",
+    notes: [],
+    featured: false
   },
 
   /* ---------------- Interactive & Installation ---------------- */
