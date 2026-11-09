@@ -35,7 +35,7 @@
    ========================================================= */
 
 /* the filter buttons on the Works page, in this order */
-const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Interactive Artist"];
+const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Audio Programmer", "Interactive Artist"];
 
 const ROOMS = [
   {
@@ -61,6 +61,12 @@ const ROOMS = [
     title: "Original Songs",
     blurb: "Songs I write, sing and produce.",
     hue: 55
+  },
+  {
+    id: "tools-code",
+    title: "Audio Tools & Code",
+    blurb: "Software I write for listening to and working with sound.",
+    hue: 120
   },
   {
     id: "interactive-installation",
@@ -392,6 +398,25 @@ const WORKS = [
     pending: "",
     summary: "The entrance piece of a live audio-visual installation at the MIT Chapel, presented with MIT ORSEL and the Berklee Interdisciplinary Arts Institute.",
     notes: ["Up to three visitors touch a shared light object and breathe together while the sound gathers, holds and spreads."],
+    featured: false
+  },
+  {
+    id: "audio-analyzer",
+    room: "tools-code",
+    title: "Audio Analyzer",
+    year: "2025",
+    roles: ["Audio Programmer"],
+    role: "",
+    status: "",
+    tools: ["Python"],
+    image: "",
+    media: "images",
+    link: "",
+    link2: "",
+    images: [],
+    pending: "",
+    summary: "A small audio analysis tool written in Python.",
+    notes: [],
     featured: false
   }
 ];
