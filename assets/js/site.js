@@ -135,11 +135,15 @@ function mediaFor(url, title) {
 function mediaBlock(work) {
   // only real links count; notes like "coming later" are ignored
   const links = [work.link, work.link2, work.video].filter((u) => /^(https?:\/\/|assets\/)/.test(u || ""));
-  const players = links.map((u) => mediaFor(u, work.title)).join("");
+  const parts = links.map((u) => mediaFor(u, work.title));
+  const isButton = (h) => h.startsWith('<p class="media-link"');
+  const players = parts.filter((h) => !isButton(h)).join("");
+  const buttons = parts.filter(isButton).join("");
   const gallery = (work.images || []).length
     ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
     : "";
-  return { html: players + gallery, hasVideo: /class="media"/.test(players) };
+  // order: players, then pictures, then project buttons
+  return { html: players + gallery + buttons, hasVideo: /class="media"/.test(players), hasGallery: !!gallery };
 }
 
 const NUM = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
@@ -232,7 +236,7 @@ const pages = {
     const next = list[(i + 1) % list.length];
 
     const mb = mediaBlock(work);
-    const embed = mb.hasVideo;   // a video already shows the work, so skip the sound object
+    const embed = mb.hasVideo || mb.hasGallery;   // a video already shows the work, so skip the sound object
     const waiting = work.pending || (work.status ? "" : ({
       video: "Video coming soon", audio: "Audio coming soon", "audio+score": "Audio and score coming soon",
       "video+audio": "Video coming soon", images: "", none: "Coming soon"

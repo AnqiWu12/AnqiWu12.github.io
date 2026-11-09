@@ -411,12 +411,12 @@ const WORKS = [
     tools: ["Python"],
     image: "",
     media: "images",
-    link: "",
+    link: "https://github.com/AnqiWu12/AOP",
     link2: "",
-    images: [],
+    images: ["assets/images/audio-analyzer.jpg"],
     pending: "",
-    summary: "A small audio analysis tool written in Python.",
-    notes: [],
+    summary: "A small desktop app written in Python for quickly inspecting audio files.",
+    notes: ["Choose a .wav file and it shows the sample rate, bit depth, number of channels, duration and frame count at a glance."],
     featured: false
   },
   {

@@ -427,3 +427,6 @@ video.media { object-fit: contain; }
 }
 .work .media-link a:hover { background: var(--ink); color: var(--paper); }
 .work .media-link a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+/* screenshots keep their own shape instead of being cropped */
+.work .gallery { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.work .gallery img { aspect-ratio: auto; object-fit: contain; max-height: 640px; margin: 0 auto; width: auto; max-width: 100%; box-shadow: 0 12px 30px rgba(0,0,0,.10); }
