@@ -115,7 +115,7 @@ const WORKS = [
     title: "Dungeon Escape",
     year: "2026",
     roles: ["Composer", "Sound Designer", "Audio Implementer"],
-    role: "Music, SFX & Implementation",
+    role: "",
     status: "",
     tools: ["Unreal Engine", "Wwise", "Blueprints"],
     image: "",
