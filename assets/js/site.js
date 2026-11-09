@@ -111,6 +111,9 @@ function mediaFor(url, title) {
       "&color=%231f1e1c&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
     return `<iframe class="media-audio" src="${src}" title="${esc(title)}" loading="lazy" allow="autoplay"></iframe>`;
   }
+  if (/\.(mp4|webm)(\?.*)?$/i.test(url)) {
+    return `<video class="media" controls preload="metadata" playsinline src="${esc(url)}"></video>`;
+  }
   if (/\.(mp3|wav|m4a|ogg)(\?.*)?$/i.test(url)) {
     return `<figure class="audio-file"><audio controls preload="none" src="${esc(url)}"></audio></figure>`;
   }

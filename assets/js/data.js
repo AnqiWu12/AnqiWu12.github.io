@@ -17,6 +17,8 @@
      link     main media link. The site picks the player by itself:
                 YouTube / Vimeo link      -> video player
                 SoundCloud link           -> SoundCloud player
+                "assets/video/x.mp4"      -> video player (put the file
+                                             in the assets/video folder)
                 "assets/audio/x.mp3"      -> audio player (put the file
                                              in the assets/audio folder)
                 "assets/scores/x.pdf"     -> a "View score (PDF)" link
