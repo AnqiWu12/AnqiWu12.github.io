@@ -430,12 +430,12 @@ const WORKS = [
     tools: ["Unity", "C#"],
     image: "",
     media: "images",
-    link: "",
+    link: "https://anqianki.itch.io/applefarm",
     link2: "",
-    images: [],
+    images: ["assets/images/apple-farm.jpg"],
     pending: "",
-    summary: "A first-person arcade game built in Unity, with animal AI, wave spawning, a Golden Apple power-up and a WebGL build.",
-    notes: [],
+    summary: "A first-person arcade game built in Unity. Throw apples to feed the farm animals: each one needs three apples before time runs out.",
+    notes: ["I programmed the animal AI, wave spawning and a Golden Apple power-up in C#, and published a WebGL build you can play in the browser."],
     featured: false
   },
   {
@@ -449,11 +449,11 @@ const WORKS = [
     tools: ["Unity", "C#"],
     image: "",
     media: "images",
-    link: "",
+    link: "https://anqianki.itch.io/applesnake",
     link2: "",
-    images: [],
+    images: ["assets/images/apple-snake.jpg"],
     pending: "",
-    summary: "A 2D Snake game built in Unity with C#.",
+    summary: "A playful take on Snake, built in Unity with C#: guide the snake to eat apples and grow without running into yourself.",
     notes: [],
     featured: false
   }
