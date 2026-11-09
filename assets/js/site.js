@@ -15,6 +15,8 @@ function esc(s) {
 const roomById = (id) => ROOMS.find((r) => r.id === id);
 const workById = (id) => WORKS.find((w) => w.id === id);
 const worksIn = (roomId) => WORKS.filter((w) => w.room === roomId);
+/* the role line: your own words if you wrote them, otherwise the tags */
+const roleText = (w) => w.role || (w.roles || []).join(" · ");
 
 /* a small seeded random generator, so each work always gets the same shape */
 function seeded(str) {
@@ -85,7 +87,7 @@ function exhibit(work) {
   const visual = work.image
     ? `<img class="object" src="${esc(work.image)}" alt="${esc(work.title)}" loading="lazy">`
     : soundObject(work.id, room?.hue);
-  const second = work.year || work.role;
+  const second = work.year || roleText(work);
   return `
   <a class="exhibit" href="work.html?id=${encodeURIComponent(work.id)}">
     ${visual}
@@ -224,7 +226,7 @@ const pages = {
       ? `<img class="hero" src="${esc(work.image)}" alt="${esc(work.title)}">`
       : `<div class="hero">${soundObject(work.id, room?.hue)}</div>`;
 
-    const meta = [work.year, work.role, room?.title].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("");
+    const meta = [work.year, roleText(work), room?.title].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("");
 
     box.innerHTML = `
       <a class="back" href="room.html?r=${encodeURIComponent(work.room)}">← ${esc(room?.title)}</a>

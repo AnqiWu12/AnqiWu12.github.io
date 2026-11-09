@@ -9,7 +9,8 @@
      year     e.g. "2025"  (leave "" if you don't want a year)
      roles    which filter buttons this work appears under (Works page);
               use names from the ROLES list below
-     role     what YOU did, in words (shown on the label)
+     role     optional: your role in your own words, e.g. "Audio Director".
+              Leave "" and the site shows the roles above instead.
      tools    list of tools
      image    path to a cover image, e.g. "assets/images/stray.jpg"
               (leave "" to show the generated "sound object")
