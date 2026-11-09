@@ -32,7 +32,7 @@
    ========================================================= */
 
 /* the filter buttons on the Works page, in this order */
-const ROLES = ["Composer", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Interactive Artist"];
+const ROLES = ["Composer", "Songwriter", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Interactive Artist"];
 
 const ROOMS = [
   {
@@ -52,6 +52,12 @@ const ROOMS = [
     title: "Arrangement & Orchestration",
     blurb: "Existing music rewritten for new forces: orchestra, ensemble and voice.",
     hue: 345
+  },
+  {
+    id: "original-songs",
+    title: "Original Songs",
+    blurb: "Songs I write, sing and produce.",
+    hue: 55
   },
   {
     id: "interactive-installation",
@@ -240,6 +246,23 @@ const WORKS = [
     link2: "",
     images: [],
     summary: "A pop song rearranged for ensemble.",
+    notes: [],
+    featured: false
+  },
+
+  {
+    id: "moving-through-the-silence",
+    roles: ["Songwriter"],
+    room: "original-songs",
+    title: "Moving Through the Silence",
+    year: "",
+    role: "",
+    tools: [],
+    image: "",
+    link: "",
+    link2: "",
+    images: [],
+    summary: "An original song.",
     notes: [],
     featured: false
   },
