@@ -143,7 +143,7 @@ const WORKS = [
     link2: "",
     images: [],
     pending: "",
-    summary: "Winner of the PRESS Golden Dolphin Award (金海豚奖). A game made in a 21-day online game jam in China.",
+    summary: "Winner of the Cyber Sousa Award (金海豚奖). A game made in a 21-day online game jam in China, around this year's theme, PRESS.",
     notes: ["I joined remotely from the US, working with students from Tsinghua University and Peking University, and was responsible for all of the game's sound design and audio implementation."],
     featured: false
   },
