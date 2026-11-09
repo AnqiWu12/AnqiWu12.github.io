@@ -17,6 +17,6 @@ A small static site (plain HTML, CSS and JavaScript, no build step).
 `image: "assets/images/your-file.jpg"`. Without an image, each work shows a
 generated "sound object".
 
-**Adding a video:** paste a YouTube or Vimeo link into that work's `video: ""`.
+**Adding media:** paste a YouTube, Vimeo or SoundCloud link into that work's `link: ""` (and `link2` for a second one). For an audio file, put the .mp3 in `assets/audio/` and use `link: "assets/audio/name.mp3"`.
 
 After editing, commit and push; GitHub Pages updates in about a minute.

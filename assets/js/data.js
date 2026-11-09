@@ -13,7 +13,15 @@
      tools    list of tools
      image    path to a cover image, e.g. "assets/images/stray.jpg"
               (leave "" to show the generated "sound object")
-     video    a YouTube or Vimeo link (leave "" until you have one)
+     link     main media link. The site picks the player by itself:
+                YouTube / Vimeo link      -> video player
+                SoundCloud link           -> SoundCloud player
+                "assets/audio/x.mp3"      -> audio player (put the file
+                                             in the assets/audio folder)
+                any other link            -> a "Listen / watch" link
+     link2    optional second link, same rules (e.g. video + audio)
+     images   optional list of extra pictures shown under the media,
+              e.g. ["assets/images/hold-1.jpg", "assets/images/hold-2.jpg"]
      summary  one or two sentences for the project page
      notes    optional extra paragraphs (list of strings)
      featured true = also shown on the Main page
@@ -60,7 +68,9 @@ const WORKS = [
     role: "Composer",
     tools: ["Logic Pro"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "A rescore of a scene from Stray.",
     notes: [],
     featured: true
@@ -74,7 +84,9 @@ const WORKS = [
     role: "Composer",
     tools: ["Logic Pro"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "A rescore of the cave scene where the ghost princess appears. My first game-scoring piece.",
     notes: [],
     featured: false
@@ -88,7 +100,9 @@ const WORKS = [
     role: "Composer / Sound Designer / Audio Director",
     tools: [],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "Three team projects with USC game developers: composer on one, sound designer on another, and audio director, composer and audio implementer on the most recent.",
     notes: [],
     featured: false
@@ -104,7 +118,9 @@ const WORKS = [
     role: "Music, SFX & Implementation",
     tools: ["Wwise", "Unreal Engine", "Blueprints"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "A dungeon crawler with a four-state adaptive music system and stingers for statue interactions. Music, sound effects and Blueprint implementation are all mine.",
     notes: [],
     featured: true
@@ -118,7 +134,9 @@ const WORKS = [
     role: "Sound Design & Implementation",
     tools: ["Wwise", "Unreal Engine"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "An interactive cave soundscape: attenuation curves, player speed driving Foley through an RTPC, and state-based transitions between cave areas.",
     notes: [],
     featured: false
@@ -132,7 +150,9 @@ const WORKS = [
     role: "Audio",
     tools: ["Unity", "C#", "Git LFS"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "A collaborative Unity game. I built the audio, including a scene-transition crossfade system using a custom event bus.",
     notes: [],
     featured: false
@@ -148,7 +168,9 @@ const WORKS = [
     role: "Vocal Arranger",
     tools: [],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "Vocal arrangement for a carnival celebration song in NetEase's Eggy Party (蛋仔派对). The song is still used in the game.",
     notes: [],
     featured: true
@@ -164,7 +186,9 @@ const WORKS = [
     role: "Solo artist",
     tools: ["Unreal Engine", "TouchDesigner", "Wwise", "Arduino", "OSC"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "A private, curtained space to hold, not express, what you feel. You speak, sigh or hum; the system listens only to the texture and energy of your voice, never its meaning, and leaves no trace.",
     notes: [
       "Your voice summons a mist out of silence. A wave of the hand over a real, empty diary releases it into an abstract book on screen, where it dissolves."
@@ -180,7 +204,9 @@ const WORKS = [
     role: "Sound & Interaction (team of four)",
     tools: ["Wwise", "Makey Makey"],
     image: "",
-    video: "",
+    link: "",
+    link2: "",
+    images: [],
     summary: "The entrance piece of a collaborative live audio-visual work at the MIT Chapel, presented with MIT ORSEL and Berklee. Up to three visitors touch a shared light object and breathe together while the sound gathers, holds and spreads.",
     notes: [],
     featured: false

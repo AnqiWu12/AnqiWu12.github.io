@@ -93,14 +93,35 @@ function exhibit(work) {
   </a>`;
 }
 
-/* ---------- turn a YouTube / Vimeo link into an embed ---------- */
-function embedUrl(url) {
+/* ---------- media: turn each link into the right player ----------
+   YouTube / Vimeo        -> video player
+   SoundCloud             -> SoundCloud player
+   .mp3 .wav .m4a .ogg    -> audio player (file in assets/audio/)
+   anything else          -> a plain "Listen / watch" link            */
+function mediaFor(url, title) {
   if (!url) return "";
-  let m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
-  if (m) return `https://www.youtube-nocookie.com/embed/${m[1]}`;
+  let m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([\w-]{11})/);
+  if (m) return `<iframe class="media" src="https://www.youtube-nocookie.com/embed/${m[1]}" title="${esc(title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
   m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-  if (m) return `https://player.vimeo.com/video/${m[1]}`;
-  return "";
+  if (m) return `<iframe class="media" src="https://player.vimeo.com/video/${m[1]}" title="${esc(title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  if (/soundcloud\.com\//.test(url)) {
+    const src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(url) +
+      "&color=%231f1e1c&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
+    return `<iframe class="media-audio" src="${src}" title="${esc(title)}" loading="lazy" allow="autoplay"></iframe>`;
+  }
+  if (/\.(mp3|wav|m4a|ogg)(\?.*)?$/i.test(url)) {
+    return `<figure class="audio-file"><audio controls preload="none" src="${esc(url)}"></audio></figure>`;
+  }
+  return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">Listen / watch ↗</a></p>`;
+}
+
+function mediaBlock(work) {
+  const links = [work.link, work.link2, work.video].filter(Boolean);
+  const players = links.map((u) => mediaFor(u, work.title)).join("");
+  const gallery = (work.images || []).length
+    ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
+    : "";
+  return { html: players + gallery, hasVideo: /class="media"/.test(players) };
 }
 
 /* ---------- page renderers ---------- */
@@ -189,10 +210,9 @@ const pages = {
     const prev = list[(i - 1 + list.length) % list.length];
     const next = list[(i + 1) % list.length];
 
-    const embed = embedUrl(work.video);
-    const media = embed
-      ? `<iframe class="media" src="${embed}" title="${esc(work.title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`
-      : `<div class="media-pending">Video coming soon</div>`;
+    const mb = mediaBlock(work);
+    const embed = mb.hasVideo;   // a video already shows the work, so skip the sound object
+    const media = mb.html || `<div class="media-pending">Media coming soon</div>`;
 
     const visual = work.image
       ? `<img class="hero" src="${esc(work.image)}" alt="${esc(work.title)}">`
