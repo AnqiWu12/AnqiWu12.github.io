@@ -259,7 +259,7 @@ const WORKS = [
     tools: [],
     image: "",
     media: "video",
-    link: "",
+    link: "https://youtu.be/CMCsA3vcMvo",
     link2: "",
     images: [],
     pending: "",
