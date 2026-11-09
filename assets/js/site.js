@@ -120,11 +120,21 @@ function mediaFor(url, title) {
   if (/\.pdf(\?.*)?$/i.test(url)) {
     return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">View score (PDF) ↗</a></p>`;
   }
-  return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">Listen / watch ↗</a></p>`;
+  // project pages (store, code, game jam) become a button
+  const where = [
+    [/github\.com/, "View the project on GitHub"],
+    [/store\.steampowered\.com/, "View on Steam"],
+    [/itch\.io/, "Play on itch.io"],
+    [/spotify\.com/, "Listen on Spotify"],
+    [/music\.163\.com/, "Listen on NetEase Cloud Music"],
+    [/bandcamp\.com/, "Listen on Bandcamp"]
+  ].find(([re]) => re.test(url));
+  return `<p class="media-link"><a href="${esc(url)}" target="_blank" rel="noopener">${where ? where[1] : "Visit the project"} ↗</a></p>`;
 }
 
 function mediaBlock(work) {
-  const links = [work.link, work.link2, work.video].filter(Boolean);
+  // only real links count; notes like "coming later" are ignored
+  const links = [work.link, work.link2, work.video].filter((u) => /^(https?:\/\/|assets\/)/.test(u || ""));
   const players = links.map((u) => mediaFor(u, work.title)).join("");
   const gallery = (work.images || []).length
     ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
@@ -223,13 +233,17 @@ const pages = {
 
     const mb = mediaBlock(work);
     const embed = mb.hasVideo;   // a video already shows the work, so skip the sound object
-    const media = mb.html || `<div class="media-pending">Media coming soon</div>`;
+    const waiting = work.pending || (work.status ? "" : ({
+      video: "Video coming soon", audio: "Audio coming soon", "audio+score": "Audio and score coming soon",
+      "video+audio": "Video coming soon", images: "", none: "Coming soon"
+    })[work.media || "none"]) || "";
+    const media = mb.html || (waiting ? `<div class="media-pending">${esc(waiting)}</div>` : "");
 
     const visual = work.image
       ? `<img class="hero" src="${esc(work.image)}" alt="${esc(work.title)}">`
       : `<div class="hero">${soundObject(work.id, room?.hue)}</div>`;
 
-    const meta = [work.year, roleText(work), room?.title].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("");
+    const meta = [work.year, work.status, roleText(work), room?.title].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("");
 
     box.innerHTML = `
       <a class="back" href="room.html?r=${encodeURIComponent(work.room)}">← ${esc(room?.title)}</a>

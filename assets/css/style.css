@@ -415,3 +415,15 @@ main { animation: enter .9s ease both; }
 }
 .work .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 video.media { object-fit: contain; }
+
+/* ---------- 16. Project links as buttons ---------- */
+.work .media-link { margin: 48px 0; }
+.work .media-link a {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  padding: 10px 24px;
+  font-size: 15px;
+  transition: background .3s, color .3s;
+}
+.work .media-link a:hover { background: var(--ink); color: var(--paper); }
+.work .media-link a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
