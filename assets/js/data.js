@@ -58,8 +58,8 @@ const ROOMS = [
   },
   {
     id: "original-songs",
-    title: "Original Songs",
-    blurb: "Songs I write, sing and produce.",
+    title: "Original Music",
+    blurb: "My own songs and tracks, written and produced from scratch.",
     hue: 55
   },
   {
@@ -360,6 +360,25 @@ const WORKS = [
     pending: "",
     summary: "This piece is inspired by emotional states that exist beyond language, where meaning is felt rather than clearly defined. It reflects moments of connection, distance and transition that can't be fully explained but keep lingering beneath the surface.",
     notes: ["Silence here is not empty. It is a space where thoughts, memories and emotions move freely. Through layered vocals and atmospheric production, the song explores a quiet tension between holding on and letting go."],
+    featured: false
+  },
+  {
+    id: "dubstep-track",
+    room: "original-songs",
+    title: "Dubstep Track",
+    year: "",
+    roles: ["Composer", "Producer"],
+    role: "",
+    status: "",
+    tools: [],
+    image: "",
+    media: "audio",
+    link: "",
+    link2: "",
+    images: [],
+    pending: "",
+    summary: "An original dubstep track, written and produced from scratch, with sampled vocals.",
+    notes: [],
     featured: false
   },
   {
