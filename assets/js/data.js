@@ -166,7 +166,7 @@ const WORKS = [
     media: "images",
     link: "https://mizl1zzie.itch.io/a-bee-game-of-sorts",
     link2: "",
-    images: [],
+    images: ["assets/images/a-bee-game-of-sorts.png"],
     pending: "",
     summary: "A 2D puzzle game about a little bee, made in a 12-hour game jam and released on itch.io.",
     notes: ["I composed and produced the music."],
