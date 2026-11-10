@@ -149,7 +149,7 @@ const WORKS = [
     link2: "",
     images: ["assets/images/dystopia.jpg"],
     pending: "",
-    summary: "Winner of the Cyber Sousa Award (金海豚奖). A dystopian game made in a 21-day online game jam in China, built around this year's theme, PRESS.",
+    summary: "A dystopian game made for the Cyber Sousa Award (金海豚奖), a 21-day online game jam in China. This year's theme was PRESS.",
     notes: ["I joined remotely from the US, working with students from Tsinghua University and Peking University, and was responsible for all of the game's sound design and audio implementation."],
     featured: false
   },
