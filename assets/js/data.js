@@ -109,7 +109,7 @@ const WORKS = [
     media: "images",
     link: "https://store.steampowered.com/app/4757060/Venture/",
     link2: "",
-    images: [],
+    images: ["assets/images/venture.jpg"],
     pending: "",
     summary: "Two astronauts wake up on an alien planet with only minutes of oxygen left. They must work together to scale huge cliffs, study strange lifeforms and find a way home in this atmospheric co-op survival adventure.",
     notes: ["I created the game's sound design. Venture is out now on Steam and Ludare."],
