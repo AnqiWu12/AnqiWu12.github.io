@@ -432,3 +432,15 @@ video.media { object-fit: contain; }
 .work .gallery img { aspect-ratio: auto; object-fit: contain; max-height: 640px; margin: 0 auto; width: auto; max-width: 100%; box-shadow: 0 12px 30px rgba(0,0,0,.10); }
 /* cut-out pictures (transparent PNG) float on the wall, no frame */
 .work .gallery img[src$=".png"] { box-shadow: none; filter: drop-shadow(0 14px 18px rgba(0,0,0,.14)); max-height: 240px; }
+
+/* ---------- 17. Captions above stacked videos ---------- */
+.work .media-fig { margin: 56px 0; }
+.work .media-fig + .media-fig { margin-top: 40px; }
+.work .media-fig figcaption {
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.work .media-fig .media { margin: 0; }

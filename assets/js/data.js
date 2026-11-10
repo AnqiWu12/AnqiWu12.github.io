@@ -221,7 +221,7 @@ const WORKS = [
     tools: [],
     image: "",
     media: "video",
-    link: "",
+    link: "https://youtu.be/7RnoV8n2VUg",
     link2: "",
     images: [],
     pending: "",
@@ -278,12 +278,13 @@ const WORKS = [
     tools: ["Wwise", "Unity"],
     image: "",
     media: "video",
-    link: "",
+    link: "https://youtu.be/bOjOF0QHVnE",
     link2: "",
     images: [],
     pending: "",
     summary: "An interactive environment that moves from a damp cave into an abandoned lab, with sound that reacts to the player at every step.",
     notes: ["You enter a silent cave. Water drips somewhere in the dark, rocks shift overhead, and something deeper inside lets out a low growl. Your walkie-talkie crackles as the signal fades. Then you notice a doorway, almost swallowed by the rock. You step through, and the cave is gone: broken glass, flickering lights, and an abandoned lab that knows you're here.", "I built the audio structure in Wwise and integrated it into Unity. RTPCs drive the monster rumble, the alarm and a layer of the music, so their intensity rises as the space grows tense. The monster and alarm sit in 3D space, so the player can hear where they are and how far away.", "Ambient sounds play with random timing and variation, so no two visits feel the same. Most sounds respond to the player: monologue cues stand in for dialogue, and the mix shifts with the player's movement and where they look.", "All audio assets are my own. Voice acting by Tommy X. Wu."],
+    captions: ["Inside the Wwise project", "Playing it in Unity"],
     featured: false
   },
   {

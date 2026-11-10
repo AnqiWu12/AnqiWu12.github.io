@@ -135,16 +135,22 @@ function mediaFor(url, title) {
 
 function mediaBlock(work) {
   // only real links count; notes like "coming later" are ignored
-  const links = [work.link, work.link2, work.video].filter((u) => /^(https?:\/\/|assets\/)/.test(u || ""));
-  const parts = links.map((u) => mediaFor(u, work.title));
+  // each link can have a short caption (captions[0] for link, captions[1] for link2)
+  const real = (u) => /^(https?:\/\/|assets\/)/.test(u || "");
+  const caps = work.captions || [];
+  const pairs = [[work.link, caps[0]], [work.link2, caps[1]], [work.video, ""]].filter(([u]) => real(u));
   const isButton = (h) => h.startsWith('<p class="media-link"');
+  const parts = pairs.map(([u, cap]) => {
+    const h = mediaFor(u, work.title);
+    return cap && !isButton(h) ? `<figure class="media-fig"><figcaption>${esc(cap)}</figcaption>${h}</figure>` : h;
+  });
   const players = parts.filter((h) => !isButton(h)).join("");
   const buttons = parts.filter(isButton).join("");
   const gallery = (work.images || []).length
     ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
     : "";
   // order: players, then pictures, then project buttons
-  return { html: players + gallery + buttons, hasVideo: /class="media"/.test(players), hasGallery: !!gallery };
+  return { html: players + gallery + buttons, hasVideo: /class="media[" ]/.test(players), hasGallery: !!gallery };
 }
 
 const NUM = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
