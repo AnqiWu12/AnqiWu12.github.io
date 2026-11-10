@@ -279,7 +279,7 @@ const WORKS = [
     image: "",
     media: "video",
     link: "https://youtu.be/bOjOF0QHVnE",
-    link2: "",
+    link2: "https://youtu.be/C4mRDWV1Ta0",
     images: [],
     pending: "",
     summary: "An interactive environment that moves from a damp cave into an abandoned lab, with sound that reacts to the player at every step.",
