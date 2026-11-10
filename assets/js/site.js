@@ -125,6 +125,7 @@ function mediaFor(url, title) {
     [/github\.com/, "View the project on GitHub"],
     [/store\.steampowered\.com/, "View on Steam"],
     [/itch\.io/, "Play on itch.io"],
+    [/instagram\.com/, "See more on Instagram"],
     [/spotify\.com/, "Listen on Spotify"],
     [/music\.163\.com/, "Listen on NetEase Cloud Music"],
     [/bandcamp\.com/, "Listen on Bandcamp"]
