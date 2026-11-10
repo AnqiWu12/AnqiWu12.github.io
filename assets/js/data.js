@@ -202,7 +202,7 @@ const WORKS = [
     tools: ["Logic Pro"],
     image: "",
     media: "video",
-    link: "",
+    link: "https://youtu.be/y0xbwqIkwI4",
     link2: "",
     images: [],
     pending: "",
