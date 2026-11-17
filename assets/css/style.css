@@ -444,3 +444,10 @@ video.media { object-fit: contain; }
   margin-bottom: 12px;
 }
 .work .media-fig .media { margin: 0; }
+
+/* ---------- 18. Credit line and point lists on long work pages ---------- */
+.work .credit { margin-top: 8px; font-size: 14px; color: var(--ink-soft); font-style: italic; }
+.work .points { list-style: none; display: grid; gap: 14px; }
+.work .points li { position: relative; padding-left: 22px; }
+.work .points li::before { content: "·"; position: absolute; left: 4px; color: var(--ink-soft); }
+.work .points b { font-weight: 700; }

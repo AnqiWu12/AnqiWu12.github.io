@@ -260,11 +260,19 @@ const pages = {
       <a class="back" href="room.html?r=${encodeURIComponent(work.room)}">← ${esc(room?.title)}</a>
       <h1>${esc(work.title)}</h1>
       <p class="meta">${meta}</p>
+      ${work.credit ? `<p class="credit">${esc(work.credit)}</p>` : ""}
       ${embed ? "" : visual}
       ${media}
       <h2>About this work</h2>
       <p>${esc(work.summary)}</p>
       ${(work.notes || []).map((p) => `<p>${esc(p)}</p>`).join("")}
+      ${(work.sections || []).map((sec) => `
+        <h2>${esc(sec.heading)}</h2>
+        ${(sec.paras || []).map((p) => `<p>${esc(p)}</p>`).join("")}
+        ${(sec.list || []).length ? `<ul class="points">${sec.list.map((li) => {
+          const k = li.indexOf(": ");
+          return k > 0 && k < 24 ? `<li><b>${esc(li.slice(0, k))}</b>${esc(li.slice(k))}</li>` : `<li>${esc(li)}</li>`;
+        }).join("")}</ul>` : ""}`).join("")}
       ${work.tools?.length ? `<h2>Tools</h2><ul class="tools">${work.tools.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
       ${list.length > 1 ? `
       <nav class="next-prev">
