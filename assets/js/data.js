@@ -412,7 +412,7 @@ const WORKS = [
     tools: ["Unity", "C#", "Wwise", "Makey Makey"],
     image: "",
     media: "video",
-    link: "",
+    link: "https://calendar.mit.edu/event/what-is-your-light-2026",
     link2: "",
     images: [],
     pending: "",

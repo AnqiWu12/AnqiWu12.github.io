@@ -126,6 +126,7 @@ function mediaFor(url, title) {
     [/store\.steampowered\.com/, "View on Steam"],
     [/itch\.io/, "Play on itch.io"],
     [/instagram\.com/, "See more on Instagram"],
+    [/calendar\.mit\.edu/, "View the event at MIT"],
     [/spotify\.com/, "Listen on Spotify"],
     [/music\.163\.com/, "Listen on NetEase Cloud Music"],
     [/bandcamp\.com/, "Listen on Bandcamp"]
@@ -150,7 +151,7 @@ function mediaBlock(work) {
     ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
     : "";
   // order: players, then pictures, then project buttons
-  return { html: players + gallery + buttons, hasVideo: /class="media[" ]/.test(players), hasGallery: !!gallery };
+  return { html: players + gallery + buttons, buttons, hasPlayer: !!players, hasVideo: /class="media[" ]/.test(players), hasGallery: !!gallery };
 }
 
 const NUM = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
@@ -248,7 +249,10 @@ const pages = {
       video: "Video coming soon", audio: "Audio coming soon", "audio+score": "Audio and score coming soon",
       "video+audio": "Video coming soon", images: "", none: "Coming soon"
     })[work.media || "none"]) || "";
-    const media = mb.html || (waiting ? `<div class="media-pending">${esc(waiting)}</div>` : "");
+    // nothing to watch or see yet: show the "coming soon" note, then any project buttons
+    const media = (mb.hasPlayer || mb.hasGallery)
+      ? mb.html
+      : (waiting ? `<div class="media-pending">${esc(waiting)}</div>` : "") + mb.buttons;
 
     const visual = work.image
       ? `<img class="hero" src="${esc(work.image)}" alt="${esc(work.title)}">`
