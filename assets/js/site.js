@@ -235,7 +235,7 @@ const pages = {
   works() {
     // 1. the filter buttons
     const bar = $("#filters");
-    const choices = ["All", ...ROLES];
+    const choices = ["All", ...FILTERS.map((f) => f.label)];
     bar.innerHTML = choices.map((c) =>
       `<button type="button" data-role="${esc(c)}">${esc(c)}</button>`).join("");
 
@@ -246,19 +246,21 @@ const pages = {
 
     // 3. show rooms for "All", or light up only the works with that role
     function show(role) {
-      const all = !ROLES.includes(role);
+      const group = FILTERS.find((f) => f.label === role);
+      const all = !group;
+      const has = (el) => !all && el.dataset.roles.split("|").some((r) => group.roles.includes(r));
       bar.querySelectorAll("button").forEach((b) =>
         b.setAttribute("aria-pressed", String(b.dataset.role === (all ? "All" : role))));
       $("#rooms").hidden = !all;
       floor.hidden = all;
-      $("#works-lede").textContent = all ? roomsLede() : `Works as ${role}.`;
+      $("#works-lede").textContent = all ? roomsLede() : `Works in ${role}.`;
       if (!all) {
         // lit works move to the front of the wall, dimmed ones after
         const items = [...floor.children];
-        const lit = (el) => el.dataset.roles.split("|").includes(role);
+        const lit = has;
         [...items.filter(lit), ...items.filter((el) => !lit(el))].forEach((el) => floor.appendChild(el));
         items.forEach((el) => {
-          const on = el.dataset.roles.split("|").includes(role);
+          const on = has(el);
           el.classList.toggle("dim", !on);
           el.tabIndex = on ? 0 : -1;
           el.setAttribute("aria-hidden", String(!on));

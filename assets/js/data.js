@@ -34,8 +34,20 @@
      featured true = also shown on the Main page
    ========================================================= */
 
-/* the filter buttons on the Works page, in this order */
+/* every role a work can have (detailed; shown on labels) */
 const ROLES = ["Composer", "Songwriter", "Vocalist", "Arranger", "Orchestrator", "Producer", "Sound Designer", "Audio Implementer", "Audio Programmer", "Creative Coder", "Interactive Artist"];
+
+/* The filter buttons on the Works page. Each button groups several roles:
+   a work lights up when it has any of the roles listed. */
+const FILTERS = [
+  { label: "Composition",     roles: ["Composer", "Songwriter"] },
+  { label: "Arrangement",     roles: ["Arranger", "Orchestrator"] },
+  { label: "Production",      roles: ["Producer", "Vocalist"] },
+  { label: "Sound Design",    roles: ["Sound Designer"] },
+  { label: "Game Audio",      roles: ["Audio Implementer", "Audio Programmer"] },
+  { label: "Creative Coding", roles: ["Creative Coder"] },
+  { label: "Installation",    roles: ["Interactive Artist"] }
+];
 
 const ROOMS = [
   {
@@ -415,7 +427,7 @@ const WORKS = [
     link: "https://calendar.mit.edu/event/what-is-your-light-2026",
     link2: "",
     images: [],
-    galleries: [{"label": "At the MIT Chapel", "images": [{"src": "assets/images/mit-chapel-1.jpg", "alt": "A visitor watches the particle lights on screen during the breathing guide"}, {"src": "assets/images/mit-chapel-2.jpg", "alt": "Two visitors hold their hands around the ceramic lotuses"}, {"src": "assets/images/mit-chapel-3.jpg", "alt": "Hands around the lotuses while the screen shows Breathe out"}, {"src": "assets/images/mit-chapel-4.jpg", "alt": "Visitors cup the lotuses on the linen-covered table"}, {"src": "assets/images/mit-chapel-5.jpg", "alt": "A ceramic lotus holding an LED candle"}, {"src": "assets/images/mit-chapel-6.jpg", "alt": "The installation table with LED candles and lotuses"}]}, {"label": "Installation notes", "shape": "tall", "images": [{"src": "assets/images/mit-chapel-poster-1.jpg", "alt": "Poster: What Is Your Light? Chapel Entry, How Do You Find Silence? By Anqi Wu, with MF Dynamics, MIT ORSEL and realtalk@MIT"}, {"src": "assets/images/mit-chapel-poster-2.jpg", "alt": "Poster: A Shared Breath, over two glowing ceramic lotuses"}, {"src": "assets/images/mit-chapel-poster-3.jpg", "alt": "Poster: Light That Breathes, over the Unity C# script and the particle colors"}, {"src": "assets/images/mit-chapel-poster-4.jpg", "alt": "Poster: Touch and Sound, with the Wwise project open on a laptop"}]}],
+    galleries: [{"label": "At the MIT Chapel", "images": [{"src": "assets/images/mit-chapel-1.jpg", "alt": "A visitor watches the particle lights on screen during the breathing guide"}, {"src": "assets/images/mit-chapel-2.jpg", "alt": "Two visitors hold their hands around the ceramic lotuses"}, {"src": "assets/images/mit-chapel-3.jpg", "alt": "Hands around the lotuses while the screen shows Breathe out"}, {"src": "assets/images/mit-chapel-5.jpg", "alt": "A ceramic lotus holding an LED candle"}, {"src": "assets/images/mit-chapel-6.jpg", "alt": "The installation table with LED candles and lotuses"}]}, {"label": "Installation notes", "shape": "tall", "images": [{"src": "assets/images/mit-chapel-poster-1.jpg", "alt": "Poster: What Is Your Light? Chapel Entry, How Do You Find Silence? By Anqi Wu, with MF Dynamics, MIT ORSEL and realtalk@MIT"}, {"src": "assets/images/mit-chapel-poster-2.jpg", "alt": "Poster: A Shared Breath, over two glowing ceramic lotuses"}, {"src": "assets/images/mit-chapel-poster-3.jpg", "alt": "Poster: Light That Breathes, over the Unity C# script and the particle colors"}, {"src": "assets/images/mit-chapel-poster-4.jpg", "alt": "Poster: Touch and Sound, with the Wwise project open on a laptop"}]}],
     pending: "",
     summary: "An interactive audiovisual installation at the entrance of the MIT Chapel. Up to three visitors place their hands on ceramic lotuses, and light and sound guide them through three slow breaths together. Each visitor has their own light on the screen, and as they breathe in, their lights move closer together.",
     notes: [],
