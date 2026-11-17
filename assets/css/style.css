@@ -451,3 +451,11 @@ video.media { object-fit: contain; }
 .work .points li { position: relative; padding-left: 22px; }
 .work .points li::before { content: "·"; position: absolute; left: 4px; color: var(--ink-soft); }
 .work .points b { font-weight: 700; }
+
+/* ---------- 19. Photo sets: first photo wide, the rest in two columns ---------- */
+.work .gallery.photos { grid-template-columns: 1fr 1fr; gap: 12px; }
+.work .gallery.photos a:first-child { grid-column: 1 / -1; }
+.work .gallery.photos img { width: 100%; height: 100%; aspect-ratio: 3 / 2; object-fit: cover; max-height: none; box-shadow: none; }
+.work .gallery a { display: block; }
+.work .gallery a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+@media (max-width: 720px) { .work .gallery.photos { grid-template-columns: 1fr; } }

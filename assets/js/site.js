@@ -148,7 +148,11 @@ function mediaBlock(work) {
   const players = parts.filter((h) => !isButton(h)).join("");
   const buttons = parts.filter(isButton).join("");
   const gallery = (work.images || []).length
-    ? `<div class="gallery">${work.images.map((src) => `<img src="${esc(src)}" alt="${esc(work.title)}" loading="lazy">`).join("")}</div>`
+    ? `<div class="gallery${work.images.length > 2 ? " photos" : ""}">${work.images.map((im) => {
+        const src = typeof im === "string" ? im : im.src;
+        const alt = (typeof im === "string" ? "" : im.alt) || work.title;
+        return `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></a>`;
+      }).join("")}</div>`
     : "";
   // order: players, then pictures, then project buttons
   return { html: players + gallery + buttons, buttons, hasPlayer: !!players, hasVideo: /class="media[" ]/.test(players), hasGallery: !!gallery };
