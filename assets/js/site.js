@@ -147,19 +147,84 @@ function mediaBlock(work) {
   });
   const players = parts.filter((h) => !isButton(h)).join("");
   const buttons = parts.filter(isButton).join("");
-  const gallery = (work.images || []).length
-    ? `<div class="gallery${work.images.length > 2 ? " photos" : ""}">${work.images.map((im) => {
-        const src = typeof im === "string" ? im : im.src;
-        const alt = (typeof im === "string" ? "" : im.alt) || work.title;
-        return `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></a>`;
-      }).join("")}</div>`
-    : "";
+  // pictures: a swipeable carousel for 3 or more, a simple grid for 1 or 2
+  const sets = (work.galleries || []).slice();
+  if ((work.images || []).length) sets.unshift({ label: "", images: work.images });
+  const gallery = sets.map((set) => set.images.length > 2 ? carousel(set, work.title) : simpleGallery(set.images, work.title)).join("");
   // order: players, then pictures, then project buttons
   return { html: players + gallery + buttons, buttons, hasPlayer: !!players, hasVideo: /class="media[" ]/.test(players), hasGallery: !!gallery };
 }
 
 const NUM = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
 const roomsLede = () => `${NUM[ROOMS.length] || ROOMS.length} rooms. Step into one.`;
+
+
+/* ---------- pictures ---------- */
+function picAttrs(im, title) {
+  const src = typeof im === "string" ? im : im.src;
+  const alt = (typeof im === "string" ? "" : im.alt) || title;
+  return { src, alt };
+}
+function simpleGallery(images, title) {
+  return `<div class="gallery">${images.map((im) => {
+    const { src, alt } = picAttrs(im, title);
+    return `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></a>`;
+  }).join("")}</div>`;
+}
+function carousel(set, title) {
+  const n = set.images.length;
+  return `
+  <section class="carousel${set.shape === "tall" ? " tall" : ""}" aria-label="${esc(set.label || "Photos")}">
+    <div class="carousel-head">
+      <span class="carousel-label">${esc(set.label || "")}</span>
+      <span class="carousel-nav">
+        <button type="button" class="prev" aria-label="Previous picture">←</button>
+        <span class="count" aria-live="polite">1 / ${n}</span>
+        <button type="button" class="next" aria-label="Next picture">→</button>
+      </span>
+    </div>
+    <div class="carousel-track" tabindex="0">
+      ${set.images.map((im, i) => {
+        const { src, alt } = picAttrs(im, title);
+        return `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" ${i > 1 ? 'loading="lazy"' : ""}></a>`;
+      }).join("")}
+    </div>
+  </section>`;
+}
+function initCarousels(root) {
+  root.querySelectorAll(".carousel").forEach((c) => {
+    const track = c.querySelector(".carousel-track");
+    const slides = [...track.children];
+    const prev = c.querySelector(".prev"), next = c.querySelector(".next"), count = c.querySelector(".count");
+    const current = () => {
+      const x = track.scrollLeft;
+      let best = 0;
+      slides.forEach((s, i) => { if (Math.abs(s.offsetLeft - track.offsetLeft - x) < Math.abs(slides[best].offsetLeft - track.offsetLeft - x)) best = i; });
+      return best;
+    };
+    const update = () => {
+      const i = current();
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      count.textContent = `${atEnd ? slides.length : i + 1} / ${slides.length}`;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = atEnd;
+    };
+    const go = (d) => {
+      const i = Math.max(0, Math.min(slides.length - 1, current() + d));
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    };
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+    });
+    let t; track.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(update, 60); }, { passive: true });
+    window.addEventListener("resize", update);
+    track.querySelectorAll("img").forEach((img) => img.addEventListener("load", update));
+    update();
+  });
+}
 
 /* ---------- page renderers ---------- */
 const pages = {
@@ -287,6 +352,7 @@ const pages = {
         ${list.length > 2 ? `<a href="work.html?id=${encodeURIComponent(prev.id)}">← ${esc(prev.title)}</a>` : "<span></span>"}
         <a href="work.html?id=${encodeURIComponent(next.id)}">${esc(next.title)} →</a>
       </nav>` : ""}`;
+    initCarousels(box);
   }
 };
 

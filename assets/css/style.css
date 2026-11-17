@@ -459,3 +459,30 @@ video.media { object-fit: contain; }
 .work .gallery a { display: block; }
 .work .gallery a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 @media (max-width: 720px) { .work .gallery.photos { grid-template-columns: 1fr; } }
+
+/* ---------- 20. Swipeable picture carousels ---------- */
+.work .carousel { margin: 48px 0; }
+.work .carousel + .carousel { margin-top: 56px; }
+.carousel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.carousel-label { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); }
+.carousel-nav { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.carousel-nav button {
+  width: 34px; height: 34px;
+  font: inherit; font-size: 15px; color: var(--ink);
+  background: transparent; border: 1px solid var(--line); cursor: pointer;
+  transition: background .3s, color .3s, opacity .3s;
+}
+.carousel-nav button:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+.carousel-nav button:disabled { opacity: .3; cursor: default; }
+.carousel-nav button:focus-visible, .carousel-track:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.carousel-track {
+  display: flex; gap: 12px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track a { flex: 0 0 auto; scroll-snap-align: start; display: block; }
+.carousel-track img { display: block; height: min(440px, 58vw); width: auto; max-width: none; }
+.carousel.tall .carousel-track img { height: min(540px, 112vw); }
