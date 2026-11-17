@@ -89,7 +89,7 @@ const ROOMS = [
 ];
 
 /* the works on the Main page, in this order */
-const FEATURED = ["mit-chapel", "eggy-party", "adaptive-environment-audio", "stray-rescore", "venture", "the-last-of-us-sound-redesign"];
+const FEATURED = ["mit-chapel", "eggy-party", "adaptive-environment-audio", "stray-rescore", "venture", "dungeon-escape"];
 
 const WORKS = [
   {
@@ -147,7 +147,7 @@ const WORKS = [
     pending: "",
     summary: "A dungeon crawler built in Unreal Engine.",
     notes: ["I wrote the music, designed the sound effects and built the implementation in Blueprints, including a four-state adaptive music system and stingers for statue interactions."],
-    featured: false
+    featured: true
   },
   {
     id: "dystopia",
@@ -242,7 +242,7 @@ const WORKS = [
     pending: "",
     summary: "A full sound redesign of a scene from The Last of Us.",
     notes: ["I re-recorded all of the Foley, including footsteps, clothing movement and environmental sounds, along with all of the dialogue. Ellie is voiced by Sydney Pollack and Joel by Joshua Rosa."],
-    featured: true
+    featured: false
   },
   {
     id: "gta-online-rescore",
