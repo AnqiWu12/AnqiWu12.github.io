@@ -88,6 +88,9 @@ const ROOMS = [
   }
 ];
 
+/* the works on the Main page, in this order */
+const FEATURED = ["mit-chapel", "eggy-party", "adaptive-environment-audio", "stray-rescore", "venture", "the-last-of-us-sound-redesign"];
+
 const WORKS = [
   {
     id: "eggy-party",
@@ -125,7 +128,7 @@ const WORKS = [
     pending: "",
     summary: "Two astronauts wake up on an alien planet with only minutes of oxygen left. They must work together to scale huge cliffs, study strange lifeforms and find a way home in this atmospheric co-op survival adventure.",
     notes: ["I created the game's sound design. Venture is out now on Steam and Ludare."],
-    featured: false
+    featured: true
   },
   {
     id: "dungeon-escape",
@@ -144,7 +147,7 @@ const WORKS = [
     pending: "",
     summary: "A dungeon crawler built in Unreal Engine.",
     notes: ["I wrote the music, designed the sound effects and built the implementation in Blueprints, including a four-state adaptive music system and stingers for statue interactions."],
-    featured: true
+    featured: false
   },
   {
     id: "dystopia",
@@ -239,7 +242,7 @@ const WORKS = [
     pending: "",
     summary: "A full sound redesign of a scene from The Last of Us.",
     notes: ["I re-recorded all of the Foley, including footsteps, clothing movement and environmental sounds, along with all of the dialogue. Ellie is voiced by Sydney Pollack and Joel by Joshua Rosa."],
-    featured: false
+    featured: true
   },
   {
     id: "gta-online-rescore",
@@ -297,7 +300,7 @@ const WORKS = [
     summary: "An interactive environment that moves from a damp cave into an abandoned lab, with sound that reacts to the player at every step.",
     notes: ["You enter a silent cave. Water drips somewhere in the dark, rocks shift overhead, and something deeper inside lets out a low growl. Your walkie-talkie crackles as the signal fades. Then you notice a doorway, almost swallowed by the rock. You step through, and the cave is gone: broken glass, flickering lights, and an abandoned lab that knows you're here.", "I built the audio structure in Wwise and integrated it into Unity. RTPCs drive the monster rumble, the alarm and a layer of the music, so their intensity rises as the space grows tense. The monster and alarm sit in 3D space, so the player can hear where they are and how far away.", "Ambient sounds play with random timing and variation, so no two visits feel the same. Most sounds respond to the player: monologue cues stand in for dialogue, and the mix shifts with the player's movement and where they look.", "All audio assets are my own. Voice acting by Tommy X. Wu."],
     captions: ["Inside the Wwise project", "Playing it in Unity"],
-    featured: false
+    featured: true
   },
   {
     id: "cooking-fever-ui-sound-redesign",
@@ -411,7 +414,7 @@ const WORKS = [
     pending: "Video coming after the show",
     summary: "An interactive audiovisual installation. A private, curtained space to hold, not express, what you feel.",
     notes: ["You speak, sigh or hum. The system listens only to the texture and energy of your voice, never its meaning, and leaves no trace. Your voice summons a mist out of silence; a wave of the hand over a real, empty diary releases it into an abstract book on screen, where it dissolves."],
-    featured: true
+    featured: false
   },
   {
     id: "mit-chapel",
@@ -433,7 +436,7 @@ const WORKS = [
     notes: [],
     credit: "What Is Your Light?, MIT Chapel, November 3, 2026. Presented by MIT ORSEL, in collaboration with the Berklee Interdisciplinary Arts Institute.",
     sections: [{"heading": "Concept", "paras": ["What Is Your Light? invited visitors to walk through a series of installations and performances and reflect on what guides them. My piece was the first stop on that path. I believe reflection starts when we slow down, and the easiest way to slow down is to take a deep breath. The installation asks visitors to do this with the people next to them before they enter the chapel."]}, {"heading": "Design", "paras": ["The setting is inspired by Chan (禅), a school of Buddhism that developed in China and is known in the West as Zen. The word Chan comes from the Sanskrit dhyana, which means meditation. Growing up in China, I have always found the simple, natural style of Chan spaces calming. In Chan practice, meditation often begins with simple methods such as counting the breath, which is also where this installation begins.", "I chose the lotus because of its long connection to meditation. In Buddhist art, the Buddha is often shown seated on a lotus throne, and a common cross-legged meditation posture is called the lotus position. In Chinese culture, the lotus is also admired because it grows out of mud but stays clean. The Song dynasty philosopher Zhou Dunyi used this image in his short poetic essay “On the Love of the Lotus” (爱莲说) to describe a person of integrity. To me, it also suggests that calm can be found even in a busy place, like the entrance of the chapel on the night of the event.", "Each lotus holds an LED candle, since open flames are not allowed in the chapel. When visitors place their hands around a lotus, it looks as if they are holding a small light, which connects to the question of the evening: What is your light?"]}, {"heading": "Experience", "list": ["When a visitor places their hands on a lotus, their light appears on the screen and their tone joins the sound.", "The installation guides three breaths. Each breath is four seconds in, one second hold, and five seconds out. This is close to six breaths per minute, a pace often used for relaxation.", "Each visitor’s light has its own color. When everyone breathes in, the lights move to the center. If three people take part, the lights blend into a warm white glow. When everyone breathes out, the lights spread apart again.", "On the last breath, the particles drift away from the center and a bell ends the round."]}, {"heading": "Technical System", "list": ["Touch: Copper tape on each lotus is connected to a Makey Makey board. When a hand touches the copper, the board sends a key press to the computer.", "Visuals: Built in Unity with C#. A script runs a shared breathing timer and controls a particle system for each visitor. Bloom post-processing creates the glow.", "Sound: Built in Wwise and integrated into Unity. Each visitor’s presence controls the volume of their own tone. The breathing timer controls a low-pass filter, so the sound becomes brighter on the inhale and softer on the exhale. Wwise States track the inhale, hold, and exhale. A background drone plays throughout.", "Materials: Ceramic lotuses, copper tape, LED candles, linen cloth, a display, speakers, and a Makey Makey board."]}],
-    featured: false
+    featured: true
   },
   {
     id: "audio-analyzer",

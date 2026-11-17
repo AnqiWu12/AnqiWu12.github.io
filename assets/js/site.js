@@ -229,7 +229,8 @@ function initCarousels(root) {
 /* ---------- page renderers ---------- */
 const pages = {
   main() {
-    $("#floor").innerHTML = WORKS.filter((w) => w.featured).map(exhibit).join("");
+    const list = (typeof FEATURED !== "undefined" ? FEATURED.map(workById).filter(Boolean) : WORKS.filter((w) => w.featured));
+    $("#floor").innerHTML = list.map(exhibit).join("");
   },
 
   works() {
