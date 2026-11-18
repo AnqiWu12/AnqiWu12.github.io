@@ -62,6 +62,7 @@ function soundObject(seedText, hue = 210) {
   for (let i = 1; i <= 5; i++) {
     rings += `<path d="${ring(150 - i * 24, 2 + i * 1.6)}" fill="none" stroke="var(--object-edge)" stroke-width="${(1.1 - i * .12).toFixed(2)}" opacity="${(.9 - i * .12).toFixed(2)}"/>`;
   }
+  const outer = ring(160, 3);   // the stone's outline (also keeps the glow inside it)
 
   return `
   <svg class="object" viewBox="0 0 400 400" role="img" aria-hidden="true">
@@ -74,10 +75,11 @@ function soundObject(seedText, hue = 210) {
       <filter id="${id}s" x="-20%" y="-20%" width="140%" height="140%">
         <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".10"/>
       </filter>
+      <clipPath id="${id}c"><path d="${outer}"/></clipPath>
     </defs>
-    <path d="${ring(160, 3)}" fill="var(--object)" filter="url(#${id}s)"/>
+    <path d="${outer}" fill="var(--object)" filter="url(#${id}s)"/>
     ${rings}
-    <circle cx="${coreX.toFixed(1)}" cy="${coreY.toFixed(1)}" r="62" fill="url(#${id})"/>
+    <g clip-path="url(#${id}c)"><g class="core"><circle cx="${coreX.toFixed(1)}" cy="${coreY.toFixed(1)}" r="62" fill="url(#${id})"/></g></g>
   </svg>`;
 }
 

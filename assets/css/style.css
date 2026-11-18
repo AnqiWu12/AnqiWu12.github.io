@@ -486,3 +486,27 @@ video.media { object-fit: contain; }
 .carousel-track a { flex: 0 0 auto; scroll-snap-align: start; display: block; }
 .carousel-track img { display: block; height: min(440px, 58vw); width: auto; max-width: none; }
 .carousel.tall .carousel-track img { height: min(540px, 112vw); }
+
+/* ---------- 21. Hover: the glowing core of each sound object opens up ---------- */
+.object .core {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .9s ease;
+}
+.exhibit:hover .object .core,
+.exhibit:focus-visible .object .core {
+  transform: scale(1.9);
+  filter: saturate(1.5) brightness(1.15);
+  animation: core-breathe 4s ease-in-out .9s infinite;
+}
+.object path { transition: opacity .9s ease; }
+.exhibit:hover .object > path:not(:first-of-type),
+.exhibit:focus-visible .object > path:not(:first-of-type) { opacity: .35; }
+/* a slow breath while you stay on it: 4 seconds out and back */
+@keyframes core-breathe {
+  0%, 100% { transform: scale(1.9); }
+  50%      { transform: scale(2.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .exhibit:hover .object .core, .exhibit:focus-visible .object .core { animation: none; }
+}
