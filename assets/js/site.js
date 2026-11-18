@@ -65,7 +65,7 @@ function soundObject(seedText, hue = 210) {
   const outer = ring(160, 3);   // the stone's outline (also keeps the glow inside it)
 
   return `
-  <svg class="object" viewBox="0 0 400 400" role="img" aria-hidden="true">
+  <svg class="object" viewBox="0 0 400 400" role="img" aria-hidden="true" style="--hue:${hue}">
     <defs>
       <radialGradient id="${id}" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="hsl(${hue} 70% 62%)" stop-opacity=".95"/>
@@ -75,11 +75,16 @@ function soundObject(seedText, hue = 210) {
       <filter id="${id}s" x="-20%" y="-20%" width="140%" height="140%">
         <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".10"/>
       </filter>
+      <radialGradient id="${id}f" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="hsl(${hue} 95% 72%)" stop-opacity="1"/>
+        <stop offset="35%" stop-color="hsl(${hue} 85% 66%)" stop-opacity=".75"/>
+        <stop offset="100%" stop-color="hsl(${hue} 80% 66%)" stop-opacity="0"/>
+      </radialGradient>
       <clipPath id="${id}c"><path d="${outer}"/></clipPath>
     </defs>
-    <path d="${outer}" fill="var(--object)" filter="url(#${id}s)"/>
+    <path class="stone" d="${outer}" fill="var(--object)" filter="url(#${id}s)"/>
     ${rings}
-    <g clip-path="url(#${id}c)"><g class="core"><circle cx="${coreX.toFixed(1)}" cy="${coreY.toFixed(1)}" r="62" fill="url(#${id})"/></g></g>
+    <g clip-path="url(#${id}c)"><g class="core"><circle cx="${coreX.toFixed(1)}" cy="${coreY.toFixed(1)}" r="62" fill="url(#${id})"/></g><circle class="flare" cx="${coreX.toFixed(1)}" cy="${coreY.toFixed(1)}" r="150" fill="url(#${id}f)"/></g>
   </svg>`;
 }
 
