@@ -96,7 +96,7 @@ function exhibit(work) {
     : soundObject(work.id, room?.hue);
   const second = work.year || roleText(work);
   return `
-  <a class="exhibit" href="work.html?id=${encodeURIComponent(work.id)}">
+  <a class="exhibit" data-room="${work.room}" data-sid="${esc(work.id)}" href="work.html?id=${encodeURIComponent(work.id)}">
     ${visual}
     <span class="label"><span class="t">${esc(work.title)}</span><span class="y">${esc(second)}</span></span>
   </a>`;
@@ -288,7 +288,7 @@ const pages = {
       const n = worksIn(r.id).length;
       return `
       <li>
-        <a class="exhibit room" href="room.html?r=${encodeURIComponent(r.id)}">
+        <a class="exhibit room" data-room="${r.id}" data-sid="room-${r.id}" href="room.html?r=${encodeURIComponent(r.id)}">
           ${soundObject("room-" + r.id, r.hue)}
           <span class="label"><span class="t">${esc(r.title)}</span>
           <span class="y count">${n} ${n === 1 ? "work" : "works"}</span></span>
@@ -341,7 +341,7 @@ const pages = {
     const meta = [work.year, work.status, roleText(work), room?.title].filter(Boolean).map((x) => `<span>${esc(x)}</span>`).join("");
 
     box.innerHTML = `
-      <a class="back" href="room.html?r=${encodeURIComponent(work.room)}">← ${esc(room?.title)}</a>
+      <a class="back" data-room="${work.room}" data-sid="room-${work.room}" href="room.html?r=${encodeURIComponent(work.room)}">← ${esc(room?.title)}</a>
       <h1>${esc(work.title)}</h1>
       <p class="meta">${meta}</p>
       ${work.credit ? `<p class="credit">${esc(work.credit)}</p>` : ""}

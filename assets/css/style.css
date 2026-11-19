@@ -534,3 +534,17 @@ video.media { object-fit: contain; }
 /* reserve each picture's width before it loads, so the counter and arrows are right from the start */
 .carousel-track img { aspect-ratio: 3 / 2; object-fit: cover; }
 .carousel.tall .carousel-track img { aspect-ratio: 4 / 5; }
+
+/* ---------- 23. Sound on / off switch (bottom-right) ---------- */
+.sound-toggle {
+  position: fixed; z-index: 50;
+  right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
+  font: 12px/1 "Courier New", Courier, monospace; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-soft); background: var(--paper-top);
+  border: 1px solid var(--line); padding: 9px 12px; cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.sound-toggle:hover { color: var(--ink); border-color: var(--ink); }
+.sound-toggle[aria-pressed="true"] { color: var(--paper-top); background: var(--ink); border-color: var(--ink); }
+.sound-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.sound-toggle .sound-icon { display: inline-block; width: 1em; text-align: center; margin-right: 4px; }
