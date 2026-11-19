@@ -531,3 +531,6 @@ video.media { object-fit: contain; }
 .portrait-fig { margin: 0 auto 56px; width: min(280px, 100%); text-align: center; }
 .portrait-fig .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; margin: 0; filter: none; }
 .portrait-fig figcaption { margin-top: 12px; font-size: 13px; color: var(--ink-soft); font-style: italic; }
+/* reserve each picture's width before it loads, so the counter and arrows are right from the start */
+.carousel-track img { aspect-ratio: 3 / 2; object-fit: cover; }
+.carousel.tall .carousel-track img { aspect-ratio: 4 / 5; }
