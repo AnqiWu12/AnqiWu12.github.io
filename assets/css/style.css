@@ -526,3 +526,8 @@ video.media { object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
   .exhibit:hover .object .flare, .exhibit:focus-visible .object .flare { animation: none; }
 }
+
+/* ---------- 22. About portrait ---------- */
+.portrait-fig { margin: 0 auto 56px; width: min(280px, 100%); text-align: center; }
+.portrait-fig .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; margin: 0; filter: none; }
+.portrait-fig figcaption { margin-top: 12px; font-size: 13px; color: var(--ink-soft); font-style: italic; }
