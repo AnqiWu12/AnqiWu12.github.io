@@ -55,41 +55,53 @@ const ROOM_FILES = {
     return o;
   }
 
+  /* Two shared building blocks, in the style of the two favourites
+     (the yellow electric piano and the purple singing bowl):
+     soft sine tones, gentle attack, a ringing tail. */
+  // fm(): a sine whose brightness fades as it rings, like an electric piano
+  function fm(f, t, ratio, index, peak, decay, fade = 0.6) {
+    const g = ctx.createGain(); g.connect(master);
+    env(g, t, 0.006, peak, decay);
+    const car = osc("sine", f, t, decay + 0.1, g);
+    const mod = ctx.createOscillator(), mg = ctx.createGain();
+    mod.frequency.value = f * ratio;
+    mg.gain.setValueAtTime(f * index, t);
+    mg.gain.exponentialRampToValueAtTime(f * 0.02, t + fade);
+    mod.connect(mg).connect(car.frequency); mod.start(t); mod.stop(t + decay + 0.15);
+    return g;
+  }
+  // bell(): a few sine partials that each ring for their own time, like a bowl or bell
+  function bell(f, t, partials, peak, decay) {
+    partials.forEach(([ratio, amp]) => {
+      const g = ctx.createGain(); g.connect(master);
+      env(g, t, 0.01, peak * amp, decay / Math.sqrt(ratio));
+      osc("sine", f * ratio, t, decay + 0.2, g);
+    });
+  }
+
   /* ---------- the six room voices ---------- */
   const VOICES = {
-    // Games: a bright two-note 8-bit blip
-    games: { scale: [72, 74, 76, 79, 81], play(f, t, big) {
-      [0, 7].forEach((step, i) => {
-        const g = ctx.createGain(), lp = ctx.createBiquadFilter();
-        lp.type = "lowpass"; lp.frequency.value = 2400;
-        g.connect(lp).connect(master);
-        const st = t + i * 0.08;
-        env(g, st, 0.005, big ? 0.32 : 0.22, 0.12);
-        osc("square", f * Math.pow(2, step / 12), st, 0.14, g);
-      });
+    // Games: a music box / celesta (high, sparkly, short ring)
+    games: { scale: [79, 81, 84, 86, 88], play(f, t, big) {
+      fm(f, t, 3.5, big ? 1.2 : 0.8, big ? 0.3 : 0.22, big ? 1.0 : 0.7, 0.25);
     }},
-    // Rescores & Redesigns: a short cinematic swell
-    "rescores-redesigns": { scale: [57, 60, 62, 64, 67], play(f, t, big) {
-      const g = ctx.createGain(), lp = ctx.createBiquadFilter();
-      lp.type = "lowpass"; lp.Q.value = 4;
-      lp.frequency.setValueAtTime(350, t);
-      lp.frequency.exponentialRampToValueAtTime(2200, t + 0.35);
-      lp.frequency.exponentialRampToValueAtTime(600, t + 1.0);
-      g.connect(lp).connect(master);
-      env(g, t, 0.18, big ? 0.3 : 0.2, 0.8);
-      [-7, 0, 7].forEach((cents) => { const o = osc("sawtooth", f, t, 1.1, g); o.detune.value = cents; });
-      osc("sine", f / 2, t, 1.1, g);
+    // Rescores & Redesigns: a deep, slow tubular bell (low, cinematic, long ring)
+    "rescores-redesigns": { scale: [50, 53, 55, 57, 60], play(f, t, big) {
+      bell(f, t, [[1, 1], [2, 0.5], [3, 0.3], [4.2, 0.15], [0.5, 0.35]], big ? 0.34 : 0.26, big ? 3.2 : 2.6);
     }},
-    // Arrangement & Orchestration: a pizzicato pluck
-    "arrangement-orchestration": { scale: [67, 69, 72, 74, 76], play(f, t, big) {
-      const g = ctx.createGain(), lp = ctx.createBiquadFilter();
-      lp.type = "lowpass";
-      lp.frequency.setValueAtTime(5000, t);
-      lp.frequency.exponentialRampToValueAtTime(700, t + 0.3);
-      g.connect(lp).connect(master);
-      env(g, t, 0.003, big ? 0.45 : 0.32, 0.45);
-      osc("triangle", f, t, 0.5, g);
-      osc("sine", f * 2, t, 0.3, g);
+    // Arrangement & Orchestration: a vibraphone (warm, with a gentle shimmer)
+    "arrangement-orchestration": { scale: [65, 67, 69, 72, 74], play(f, t, big) {
+      const lfo = ctx.createOscillator(), depth = ctx.createGain();   // the vibraphone's motor shimmer
+      lfo.frequency.value = 5.5; depth.gain.value = 0.35;
+      const trem = ctx.createGain(); trem.gain.value = 0.65;
+      lfo.connect(depth).connect(trem.gain); lfo.start(t); lfo.stop(t + 1.9);
+      trem.connect(master);
+      const g = ctx.createGain(); g.connect(trem);
+      env(g, t, 0.004, big ? 0.34 : 0.26, big ? 1.8 : 1.4);
+      osc("sine", f, t, 1.8, g);
+      const g4 = ctx.createGain(); g4.connect(trem);
+      env(g4, t, 0.003, 0.08, 0.35);
+      osc("sine", f * 4, t, 0.4, g4);
     }},
     // Original Music: an electric piano note (FM)
     "original-songs": { scale: [60, 64, 67, 69, 71], play(f, t, big) {
@@ -101,13 +113,10 @@ const ROOM_FILES = {
       mg.gain.exponentialRampToValueAtTime(f * 0.05, t + 0.6);
       mod.connect(mg).connect(car.frequency); mod.start(t); mod.stop(t + 1.25);
     }},
-    // Creative Coding: a digital ping that glides up
-    "tools-code": { scale: [84, 86, 88, 91, 93], play(f, t, big) {
-      const g = ctx.createGain(); g.connect(master);
-      env(g, t, 0.003, big ? 0.3 : 0.2, 0.16);
-      const o = osc("sine", f / 2, t, 0.2, g);
-      o.frequency.exponentialRampToValueAtTime(f, t + 0.04);
-      if (big) { const g2 = ctx.createGain(); g2.connect(master); env(g2, t + 0.09, 0.003, 0.18, 0.14); osc("sine", f * 1.5, t + 0.09, 0.18, g2); }
+    // Creative Coding: a glass / crystal bell (clear, slightly "digital" overtones)
+    "tools-code": { scale: [74, 76, 79, 81, 83], play(f, t, big) {
+      fm(f, t, 1.414, big ? 1.0 : 0.6, big ? 0.26 : 0.2, big ? 1.4 : 1.1, 0.4);
+      bell(f * 2, t + 0.002, [[1, 1], [2.32, 0.4]], 0.06, 0.8);
     }},
     // Interactive & Installation: a soft singing-bowl bell
     "interactive-installation": { scale: [62, 65, 67, 69, 72], play(f, t, big) {
