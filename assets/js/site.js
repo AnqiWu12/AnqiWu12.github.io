@@ -211,7 +211,8 @@ function initCarousels(root) {
     };
     const update = () => {
       const i = current();
-      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      const laidOut = track.clientWidth > 0;   // a hidden tab has no width yet
+      const atEnd = laidOut && track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
       count.textContent = `${atEnd ? slides.length : i + 1} / ${slides.length}`;
       prev.disabled = track.scrollLeft <= 4;
       next.disabled = atEnd;
